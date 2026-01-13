@@ -1,1 +1,7 @@
-<h2>Welcome to My Application {{title}} !!!</h2>
+<h3>Welcome to My Application {{title}} !!!</h3>
+
+<ul>
+    @for (member of members(); track member.id) {
+        <li>{{member.id}} - {{member.displayName}}</li>
+    }   
+</ul>
