@@ -1,20 +1,17 @@
 using API.Data;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")] //localhost:5001/api/members
-    [ApiController]
-    public class MembersController(AppDbContext context) : ControllerBase
+    public class MembersController(AppDbContext context) : BaseApiController
     {
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<AppUser>>> GetMembers()
         {
             var members = await context.Users.ToListAsync();
-            return Ok(members);
+            return members;
         }
 
         [HttpGet("{id}")] //localhost:5001/api/members/:id
@@ -25,7 +22,7 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            return Ok(member);
+            return member;
         }
     }
 }
